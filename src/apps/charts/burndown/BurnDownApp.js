@@ -43,7 +43,7 @@
                 showLabels: true,
                 chartAggregationType: undefined,
                 chartDisplayType: undefined,
-                chartTimebox: undefined,
+                chartTimebox: 'release',
                 title: ''
             }
         },
@@ -264,7 +264,10 @@
             var calcConfig = this.chartComponentConfig.calculatorConfig;
             var endDate = this._getScopeObjectEndDate();
             var now = this._getNow();
-            calcConfig.startDate = Rally.util.DateTime.toIsoString(this._getScopeObjectStartDate(), true);
+            var ignoreDays = (this.getSetting('ignoreDays') | 0);
+            var newStart = new Date(this._getScopeObjectStartDate().getTime() + (1000 * 60 * 60 * 24 * ignoreDays));
+
+            calcConfig.startDate = Rally.util.DateTime.toIsoString(newStart, true);
             if(now > this._getScopeObjectStartDate() && now < this._getScopeObjectEndDate()) {
                 endDate = now;
             }

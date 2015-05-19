@@ -6,7 +6,8 @@
             "Rally.apps.charts.settings.ChartDisplayTypePicker",
             "Rally.apps.charts.settings.DataTypePicker",
             "Rally.apps.charts.settings.TimeboxPicker",
-            "Rally.ui.CheckboxField"
+            "Rally.ui.CheckboxField",
+            "Rally.ui.NumberField"
         ],
 
         config: {
@@ -46,12 +47,13 @@
             var dataTypePicker = this._buildSettingsComponent("chartdatatypepicker", "Data Type"),
                 displayPicker = this._buildSettingsComponent("chartdisplaytypepicker", "Chart Type"),
                 timeboxPicker = this._buildSettingsComponent("charttimeboxpicker", "Level"),
-                labelNameVisible = this._buildSettingsComponent("rallycheckboxfield", "Show Iteration Labels", 'showLabels');
+                labelNameVisible = this._buildSettingsComponent("rallycheckboxfield", "Show Iteration Labels", 'showLabels'),
+                ignoreDayField = this._buildSettingsComponent("rallynumberfield", "Ignore initial days", 'ignoreDays');
             
             if(this._isOnScopedDashboard()) {
-                return [dataTypePicker, displayPicker, labelNameVisible];
+                return [dataTypePicker, displayPicker, labelNameVisible, ignoreDayField];
             } else {
-                return [timeboxPicker, dataTypePicker, displayPicker, labelNameVisible];
+                return [timeboxPicker, dataTypePicker, displayPicker, labelNameVisible, ignoreDayField];
             }
         }
         
