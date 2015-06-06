@@ -71,6 +71,10 @@
                                     max = seriesData[i].Accepted + seriesData[i]['To Do'];
                                 }
                             }
+                            // if ignoring starting days, then max will be off by the amount already accepted on day 0
+                            if (seriesData.length > 0) {
+                                max -= seriesData[0].Accepted;
+                            }
                             return max;
                          }
                 }
@@ -82,9 +86,12 @@
                 {
                     "as": "Ideal",
                     "f": function (row, index, summaryMetrics, seriesData) {
+
                         var max = summaryMetrics.Scope_max,
                             increments = seriesData.length - 1,
                             incrementAmount;
+
+                        //var max = 875;
                         if(increments === 0) {
                             return max;
                         }
